@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i');
+
+            html, body {
+                font-family: 'Roboto', sans-serif;
+            }
+            .navbar {
+                background-color: #337AB7;
+            }
+            .navbar-brand {
+                color: white;
+            }
+            .form-control {
+                border-radius: 40px;
+                width: 50%;
+                margin: 20px auto;
+                border: 3px solid #337AB7;
+            }
+            .result {
+                margin: 40px;
+            }
+            .result-table {
+                margin: auto;
+            }
+            .colon {
+                padding: 0 10px;
+            }
+            .result-recommendation {
+                background: rgba(51, 122, 183, 0.2);
+                border: 3px solid #337AB7;
+                border-radius: 40px;
+                width: 80%;
+                margin: 40px auto;
+                padding: 20px;
+            }
+            h1 {
+                font-size: 28px;
+                font-weight: 700;
+                margin-bottom: 30px;
+            }
+            h2 {
+                font-weight: 700;
+                font-size: 24px;
+            }
+            hr {
+                border-top: 2px solid #337AB7;
+                margin-top: -10px;
+            }
+            .item {
+                padding: 0 8px;
+            }
+            .item-title {
+                display: flex;
+                justify-content: space-between;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar">
+            <span class="navbar-brand mb-0 h1">Sistem Rekomendasi Pengambilan Mata Kuliah</span>
+        </nav>
+        <form method="POST" class="content">
+            <input name="nim" class="form-control" type="text" placeholder="Masukkan NIM">
+        </form>
+        {% if profil %}
+        <div class="result">
+            <table class="result-table">
+                <tr>
+                  <td>NIM</td>
+                  <td class="colon">:  </td>
+                  <td>{{profil.nim}}</td>
+                </tr>
+                <tr>
+                  <td>Nama</td>
+                  <td class="colon">:</td>
+                  <td>{{profil.nama}}</td>
+                </tr>
+                <tr>
+                  <td>Semester</td>
+                  <td class="colon">:</td>
+                  <td>{{profil.semester}}</td>
+                </tr>
+                <tr>
+                  <td>Program Studi</td>
+                  <td class="colon">:</td>
+                  <td>{{profil.prodi}}</td>
+                </tr>
+                <tr>
+                  <td>Jumlah sks yang sudah diambil</td>
+                  <td class="colon">:</td>
+                  <td>{{profil.sks}}</td>
+                </tr>
+            </table>
+            <div class="result-recommendation">
+                <h1>Rekomendasi Mata Kuliah</h1>
+                {% if matkul %}
+                <div class="items">
+                    {% for item in matkul %}
+                    <div class="item">
+                        <div class="item-title">
+                            <h2>{{item.kode}}</h2>
+                            <h2>{{item.sks}} SKS</h2>
+                        </div>
+                        <p>{{item.nama}}</p>
+                        <hr>
+                    </div>
+                    {% endfor %}
+                </div>
+                {%else%}
+                <h2>Tidak ada mata kuliah yang direkomendasikan.</h2>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+    </body>
+</html>
