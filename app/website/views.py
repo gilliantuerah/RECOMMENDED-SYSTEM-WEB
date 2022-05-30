@@ -2,7 +2,7 @@ from re import L
 from flask import Blueprint, request, render_template
 import pandas as pd
 
-views = Blueprint('views', __name__)
+views = Blueprint('views', __name__, template_folder='templates')
 
 df_rekomendasi = pd.read_csv('./website/static/rekomendasi.csv')
 df_matkul = pd.read_csv('./website/static/data_matkul.csv')
