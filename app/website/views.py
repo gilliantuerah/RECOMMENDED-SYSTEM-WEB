@@ -4,11 +4,9 @@ import pandas as pd
 
 views = Blueprint('views', __name__, template_folder='templates')
 
-df_rekomendasi = pd.read_csv('./website/static/rekomendasi.csv')
-df_matkul = pd.read_csv('./website/static/data_matkul.csv')
-df_mahasiswa = pd.read_csv('./website/static/mahasiswa_dummy.csv')
-
-print(13518070 in df_mahasiswa['nim'])
+df_rekomendasi = pd.read_csv('app/website/static/rekomendasi.csv')
+df_matkul = pd.read_csv('app/website/static/data_matkul.csv')
+df_mahasiswa = pd.read_csv('app/website/static/mahasiswa_dummy.csv')
     
 def get_matkul_info(kode_matkul):
     nama_matkul = df_matkul[df_matkul['kd_kuliah'] == kode_matkul]['nama_kuliah'].values[0]
